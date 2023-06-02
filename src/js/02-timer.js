@@ -4,6 +4,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const buttonStart = document.querySelector('button[data-start]');
 buttonStart.disabled = true;
+const inputDate = document.querySelector('#datetime-picker');
 const daysTimer = document.querySelector('span[data-days]');
 const hoursTimer = document.querySelector('span[data-hours]');
 const minutesTimer = document.querySelector('span[data-minutes]');
@@ -23,8 +24,9 @@ const options = {
     } else {
       buttonStart.disabled = false;
       buttonStart.addEventListener('click', () => {
+        inputDate.disabled = true;
+        buttonStart.disabled = true;
         timerId = setInterval(() => {
-          buttonStart.disabled = true;
           const difference = selectedDates[0].getTime() - new Date().getTime();
           if (difference < 1000) {
             clearInterval(timerId);
